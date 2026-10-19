@@ -14,7 +14,7 @@ Three things to know:
 
 - **Flat vault.** Seven folders: `Inbox`, `Daily`, `Threads`, `Commitments`, `People`, `Archive`, `Meta`. No PARA tree, no maps of content, no template folder.
 - **Rules for notes.** What the user said is marked as stated and Claude's reading as inferred. Unknowns are `TBD`. Logs are append-only. Each thread has a "current state" with an as-of date. See [`references/note-rules.md`](references/note-rules.md).
-- **Tasks live in your task manager** (Sunsama, Linear, whatever the profile names). Notes reference them. Claude lists task candidates and creates them only after confirmation.
+- **Tasks live in your planning tools** (a daily planner like Sunsama, a longer-range tracker, Linear; whatever the profile names). Notes reference them. Claude lists task candidates and creates them only after confirmation.
 - **No boundaries by default.** Onboarding asks if you want any (topics or systems to keep out); the default is none, and you can add them later.
 
 ## Use

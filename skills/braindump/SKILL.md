@@ -50,7 +50,7 @@ Follow the sorter procedure in `.platform/agents/sorter.md`: append to the daily
 
 ### 4. Task candidates
 
-List every to-do-like item as a short numbered list: the wording the user used, and the thread it relates to. **Do not create anything yet.** Ask which ones to send to the task manager named in the profile (all, a list of numbers, none). For the chosen ones, ask once for anything missing that the task manager needs (for example backlog or a day, time estimate), then create them with that tool. If no task manager is named or connected, say so and leave the list in the reply.
+List every to-do-like item as a short numbered list: the wording the user used, and the thread it relates to. **Do not create anything yet.** Ask which ones to send on (all, a list of numbers, none). If the profile names more than one planning tool, propose a destination per item by time scale (near-term tasks to the daily/weekly planner, long-range goals to the long-range tool) and let the user correct it. For the chosen ones, ask once for anything missing that the task manager needs (for example backlog or a day, time estimate), then create them with that tool. If no planning tool is named or connected, say so and leave the list in the reply.
 
 Never create a task from content you only inferred. If an item is not clearly a task, ask.
 

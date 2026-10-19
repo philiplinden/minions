@@ -116,7 +116,7 @@ terms-accepted-date: "YYYY-MM-DD"
 ## Purpose
 <stated>
 ## Tools
-Task manager: TBD
+Planning tools: TBD (name, time scale, what it holds)
 Other tools: TBD
 ## Boundaries
 None set. Everything is in scope.
@@ -147,7 +147,7 @@ Run these sections in order, or only the ones the user picks. After each section
 
 ### A. My tools
 
-Ask which tools hold what. Start with: which task manager, which project tracker, which email and calendar, any note apps besides this vault, any other systems. For each, ask: what lives there, and what must never be duplicated into the vault. Record the task manager on the `Task manager:` line (agents read it to know where tasks go). Record other tools as `tool: what it holds / what stays out`.
+Ask which tools hold what. Start with: which planning tools (task manager, goal or long-range planner), which project tracker, which email and calendar, any note apps besides this vault, any other systems. For each, ask: what lives there, and what must never be duplicated into the vault. Planning tools can span time scales (for example a daily/weekly planner and a longer-term goal tracker); ask which tool is for which horizon and what goes in each. Record them on the `Planning tools:` line as `name — time scale — what it holds` (agents read it to know where task candidates go). Record other tools as `tool: what it holds / what stays out`.
 
 ### B. Boundaries (optional)
 
