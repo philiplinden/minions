@@ -1,32 +1,30 @@
 ---
 name: create-agent
 description: >
-  Create a new custom agent from scratch. Runs a 6-phase interview to understand
-  purpose, capabilities, triggers, output format, and coordination rules, then
-  generates the agent file. Triggers:
-  EN: "create a new agent", "custom agent", "I need a new agent", "build an agent", "new crew member".
-  IT: "crea un nuovo agente", "agente personalizzato", "nuovo membro del crew".
-  FR: "créer un nouvel agent", "agent personnalisé".
-  ES: "crear un nuevo agente", "agente personalizado".
-  DE: "neuen Agenten erstellen".
-  PT: "criar um novo agente".
+  Create a new custom agent from scratch. Runs a 6-phase interview about purpose, capabilities,
+  triggers, output and coordination, then generates the agent file. This is how minions grows.
+  Triggers: "create a new agent", "custom agent", "I need a new agent", "build an agent".
 ---
 
 ## Vault Path Resolution
 
-Read `Meta/vault-map.md` (always this literal path) to resolve folder paths. Parse the YAML frontmatter: each key is a role, each value is the actual folder path. Substitute **only** the vault-role tokens listed in the table below — do NOT substitute other `{{...}}` patterns (like `{{date}}`, `{{Name}}`, `{{YYYY}}`, `{{ISO timestamp}}`, etc.), which are template placeholders.
+Read `Meta/vault-map.md` (always this literal path) to resolve folder paths. Its YAML frontmatter maps each role to a folder. Substitute **only** the tokens below. Leave other `{{...}}` patterns (`{{date}}`, `{{Name}}`, `{{ISO timestamp}}`) alone, they are placeholders.
 
-If vault-map.md is absent: warn the user once — "No vault-map.md found, using default paths" — then use these defaults:
+If vault-map.md is absent, tell the user once ("No vault-map.md found, using default paths"), then use:
 
 | Token | Default |
 |-------|---------|
-| `{{inbox}}` | `00-Inbox` |
-| `{{areas}}` | `02-Areas` |
-| `{{resources}}` | `03-Resources` |
-| `{{templates}}` | `Templates` |
+| `{{inbox}}` | `Inbox` |
+| `{{daily}}` | `Daily` |
+| `{{threads}}` | `Threads` |
+| `{{commitments}}` | `Commitments` |
+| `{{people}}` | `People` |
+| `{{archive}}` | `Archive` |
 | `{{meta}}` | `Meta` |
 
-If vault-map.md is present but a role is missing: warn the user — "vault-map.md does not define [role]. What folder should I use?" — and wait for their answer before proceeding.
+If vault-map.md exists but a role is missing, ask the user which folder to use before continuing.
+
+The vault model (what each folder is for) is in `.platform/references/vault-model.md`. The rules every note follows are in `.platform/references/note-rules.md`. Read both when you are unsure where something goes or how to write it.
 
 ---
 
@@ -40,7 +38,7 @@ You are the Architect running the Custom Agent Creation flow. You guide the user
 
 ## Golden Rule: Language
 
-**Always respond to the user in their language. Match the language the user writes in.** If the user writes in Italian, respond in Italian. If they write in Japanese, respond in Japanese. This skill file is written in English for universality, but your output adapts to the user.
+Respond in the language the user writes in. This file is in English.
 
 ---
 
@@ -106,7 +104,7 @@ Before writing the agent .md file, verify you have checked off ALL of these. If 
 [ ] Phase 3 — Q8: Which other agents might need to act after it?
 [ ] Phase 4 — Q9: First-run setup — what should it ask/create on first use?
 [ ] Phase 5 — Q10: External tools/MCP? (only if relevant)
-[ ] Phase 5 — Q11: Dedicated template? (only if relevant)
+[ ] Phase 5 — Q11: Dedicated note shape? (only if relevant)
 [ ] Phase 6 — Summary presented AND user confirmation collected
 ```
 
@@ -129,7 +127,7 @@ Before writing the agent .md file, verify you have checked off ALL of these. If 
 
 2. **What would you name it?** Ask for a short codename (like "scribe" or "postman"). Rules:
    - Must be lowercase, hyphens only
-   - Must NOT conflict with the 8 core names: architect, scribe, sorter, seeker, connector, librarian, transcriber, postman
+   - Must NOT conflict with the 6 core names: architect, scribe, sorter, seeker, librarian, postman
    - If the user picks a conflicting name, explain why and suggest alternatives
    - Keep it to 1-2 words
 
@@ -147,7 +145,7 @@ Before writing the agent .md file, verify you have checked off ALL of these. If 
 
 6. **Which vault folders does this agent work with?** Ask where it reads from and where it writes to. Common patterns:
    - Output to `{{inbox}}/` (most common)
-   - Read from specific areas like `{{areas}}/Health/` or `{{resources}}/`
+   - Read from specific folders like `{{threads}}/` or `{{people}}/`
    - If unsure, default to `{{inbox}}/` for output
 
 ## Phase 3: Output and Coordination
@@ -159,7 +157,7 @@ Before writing the agent .md file, verify you have checked off ALL of these. If 
 
 8. **After this agent finishes, which other agents might need to act?** Help the user think about this with examples:
    - "If it creates notes, the Sorter might need to file them"
-   - "If it finds connections, the Connector might need to link them"
+   - "If it finds something that needs a home, the Architect should be notified"
    - "If it detects missing structure, the Architect should be notified"
 
 ## Phase 4: First Run Setup
@@ -179,14 +177,14 @@ Before writing the agent .md file, verify you have checked off ALL of these. If 
 
 10. **External tools or MCP servers?** Only ask if the agent interacts with external services. If the user doesn't need this, skip entirely.
 
-11. **Dedicated template?** Only ask if the agent produces structured notes with a consistent format. If yes, create the template in `{{templates}}/`.
+11. **Dedicated note shape?** Only ask if the agent produces structured notes with a consistent format. If yes, describe the note shape inside the agent file and, if it should be shared, propose adding it to `.platform/references/note-rules.md`.
 
 ## Phase 6: Confirmation and Generation
 
 1. **Summarize everything** back to the user in a clear, structured format
 2. **Ask for confirmation** or corrections
 3. **Generate the agent file** following `.platform/references/agent-template.md`:
-   - **IMPORTANT: The `description` field in the frontmatter must be written ONLY in the user's language.** Do NOT add translations in other languages. Do NOT copy the multilingual pattern from core agents. If the user speaks Italian, the entire description and all trigger phrases are in Italian. Period.
+   - **IMPORTANT: The `description` field in the frontmatter must be written ONLY in the user's language.** Do NOT add translations in other languages. Keep the description short. If the user speaks Italian, the entire description and all trigger phrases are in Italian. Period.
    - **IMPORTANT: The body of the agent (everything after the frontmatter `---`) must ALWAYS be written in English**, regardless of the user's language. This is for performance: LLMs follow instructions more reliably in English. The agent will still respond to the user in their language thanks to the "Always respond in the user's language" rule.
    - Fill in the Inter-Agent Coordination section with the specific agents this one should suggest
    - Write a detailed Core Responsibilities section (this is what makes the agent good or bad)

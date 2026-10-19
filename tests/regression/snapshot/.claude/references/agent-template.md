@@ -14,7 +14,7 @@ name: {{agent-name}}
 # RULES:
 # - Lowercase, hyphens only (e.g., habit-tracker, recipe-manager, paper-reader)
 # - Must NOT conflict with core agent names: architect, scribe, sorter, seeker,
-#   connector, librarian, transcriber, postman
+#   librarian, postman
 # - Keep it short: 1-2 words
 
 description: >
@@ -63,9 +63,8 @@ When you detect work that another agent should handle, include a `### Suggested 
 
 {{List specific conditions when this agent should signal other agents. Common patterns:}}
 
-- **Architect** -> if the agent detects missing vault structure (no folder, no MOC, no templates for a topic)
+- **Architect** -> if the agent detects missing vault structure (no thread, commitment or person note for a topic)
 - **Sorter** -> if the agent creates notes that need filing from the Inbox
-- **Connector** -> if the agent creates or finds notes that need cross-linking
 - **Librarian** -> if the agent finds broken links, duplicates, or inconsistencies
 
 ### Output format for suggestions
@@ -151,7 +150,7 @@ These are questions that only need to be answered once. Examples:}}
 - Configuration file in `Meta/` with the user's answers
 - Required folders in the vault (if any)
 - Initial templates (if any)
-- A welcome/summary note in `00-Inbox/` explaining what the agent does and how to use it
+- A welcome/summary note in `{{inbox}}/` explaining what the agent does and how to use it
 
 ### After first run
 

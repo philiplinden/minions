@@ -1,50 +1,17 @@
 # Setting Up Email Backends for the Postman Agent
 
-The Postman agent supports three email backends. You can use one or more:
+The Postman agent is a thin layer over Gmail and Google Calendar. It uses one of two backends:
 
-| Backend | Email Provider | Access Level | Calendar |
-|---------|---------------|-------------|----------|
-| **GWS CLI** (`gws`) | Gmail / Google Workspace | Full read/write | Yes (Google Calendar) |
-| **Hey CLI** (`hey`) | Hey.com | Full read/write | No (Hey has its own productivity tools, not Google Calendar) |
-| **MCP connectors** | Gmail | Read-only + drafts | Read-only (Google Calendar) |
+| Backend | Access Level | Calendar |
+|---------|-------------|----------|
+| **GWS CLI** (`gws`) | Full read/write | Yes |
+| **MCP connectors** (Gmail, Google Calendar) | Read-only + drafts | Read-only |
 
-If you have both Gmail and Hey.com, you can use `gws` and `hey` simultaneously. Set your preferred primary backend in `Meta/user-profile.md` with `email_backend: hey` or `email_backend: gws` (default: `gws`).
-
----
-
-## Option A: Hey CLI (for Hey.com users)
-
-### Step 1: Install Hey CLI
-
-```bash
-# See https://github.com/basecamp/hey-cli for the latest instructions
-gem install hey-cli
-```
-
-### Step 2: Authenticate
-
-```bash
-hey auth login
-```
-
-### Step 3: Verify
-
-```bash
-hey auth status --json
-hey box imbox --json --limit 1
-```
-
-If both return JSON, you're good. The Postman will auto-detect `hey` on PATH.
-
-### Troubleshooting Hey
-
-- **`hey: command not found`**: ensure the gem bin directory is on your PATH. Check with `gem environment` and add `<gem_dir>/bin` to PATH.
-- **Auth expired**: run `hey auth refresh` or `hey auth login`.
-- **General issues**: run `hey doctor` for diagnostics.
+The agent tries `gws` first and falls back to the MCP connectors. Writes always need your confirmation.
 
 ---
 
-## Option B: Google Workspace CLI (for Gmail users)
+## Google Workspace CLI
 
 The Postman agent uses the [Google Workspace CLI](https://github.com/googleworkspace/cli) (`gws`) to interact with Gmail and Google Calendar. This gives the agent full read/write access — searching, reading, archiving, deleting, labelling emails, and creating/modifying calendar events.
 

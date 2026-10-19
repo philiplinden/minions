@@ -6,24 +6,18 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 VAULT_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
 
+role_dir() {
+    local role="$1" default="$2" map="$VAULT_DIR/Meta/vault-map.md" v=""
+    [[ -f "$map" ]] && v="$(awk -F': *' -v r="$role" '/^---/{n++; next} n==1 && $1==r {gsub(/\r/,"",$2); print $2; exit}' "$map")"
+    echo "${v:-$default}"
+}
+mtime() { stat -c "%y" "$1" 2>/dev/null | cut -c1-16 || stat -f "%Sm" -t "%Y-%m-%d %H:%M" "$1" 2>/dev/null || echo "?"; }
+
 echo "=== Vault Statistics ==="
 echo ""
 
-dirs=(
-    "00-Inbox"
-    "01-Projects"
-    "02-Areas"
-    "03-Resources"
-    "04-Archive"
-    "05-People"
-    "06-Meetings"
-    "07-Daily"
-    "MOC"
-    "Templates"
-    "Meta"
-)
-
-for dir in "${dirs[@]}"; do
+for pair in inbox:Inbox daily:Daily threads:Threads commitments:Commitments people:People archive:Archive meta:Meta; do
+    dir="$(role_dir "${pair%%:*}" "${pair##*:}")"
     if [[ -d "$VAULT_DIR/$dir" ]]; then
         count=$(find "$VAULT_DIR/$dir" -name "*.md" -not -path "*/.*" 2>/dev/null | wc -l | tr -d ' ')
         printf "%-20s %s notes\n" "$dir/" "$count"
@@ -32,13 +26,12 @@ done
 
 echo ""
 echo "=== Recent Activity (last 24h) ==="
-find "$VAULT_DIR" -name "*.md" -not -path "*/.*" -not -path "*/My-Brain-Is-Full-Crew/*" -mmin -1440 2>/dev/null | while read -r f; do
-    mod=$(stat -f "%Sm" -t "%Y-%m-%d %H:%M" "$f" 2>/dev/null || stat -c "%y" "$f" 2>/dev/null | cut -c1-16 || echo "?")
+find "$VAULT_DIR" -name "*.md" -not -path "*/.*" -mmin -1440 2>/dev/null | while read -r f; do
     rel="${f#$VAULT_DIR/}"
-    echo "  $mod  $rel"
+    echo "  $(mtime "$f")  $rel"
 done | sort -r | head -20
 
 echo ""
 echo "=== Total ==="
-total=$(find "$VAULT_DIR" -name "*.md" -not -path "*/.*" -not -path "*/My-Brain-Is-Full-Crew/*" 2>/dev/null | wc -l | tr -d ' ')
+total=$(find "$VAULT_DIR" -name "*.md" -not -path "*/.*" 2>/dev/null | wc -l | tr -d ' ')
 echo "$total notes in vault"

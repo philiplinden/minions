@@ -21,17 +21,6 @@
           }
         ]
       }
-    ],
-    "Notification": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash .claude/hooks/notify-wrapper.sh"
-          }
-        ]
-      }
     ]
   }
 }

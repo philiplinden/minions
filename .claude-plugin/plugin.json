@@ -1,36 +1,12 @@
 {
-  "name": "my-brain-is-full-crew",
-  "version": "1.0.1",
-  "description": "A crew of 10 AI agents that run your Obsidian vault like a team of personal assistants — capturing notes, triaging your inbox, managing your calendar and email, tracking your nutrition, supporting your mental health, and keeping everything connected. Works in any language.",
+  "name": "minions",
+  "version": "0.1.0",
+  "description": "A personal Claude Code setup for an Obsidian vault: dictation goes in, gets filed into threads, commitments and people, and tasks stay in Sunsama. Forked from My-Brain-Is-Full-Crew.",
   "author": {
-    "name": "@gnekt (Christian Di Maio)",
-    "url": "https://github.com/gnekt"
+    "name": "philiplinden",
+    "url": "https://github.com/philiplinden"
   },
-  "repository": "https://github.com/gnekt/My-Brain-Is-Full-Crew",
+  "repository": "https://github.com/philiplinden/minions",
   "license": "MIT",
-  "keywords": [
-    "obsidian",
-    "vault",
-    "knowledge-management",
-    "zettelkasten",
-    "PARA",
-    "note-taking",
-    "second-brain",
-    "AI-agents",
-    "claude",
-    "transcription",
-    "gmail",
-    "google-calendar",
-    "email",
-    "nutrition",
-    "diet",
-    "health",
-    "mindfulness",
-    "cbt",
-    "act",
-    "mental-health",
-    "productivity",
-    "multilingual",
-    "cowork"
-  ]
+  "keywords": ["obsidian", "vault", "claude-code", "notes", "dictation"]
 }

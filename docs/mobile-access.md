@@ -1,6 +1,6 @@
-# Using the Crew from Your Phone
+# Using minions from your phone
 
-> **Platform note:** This guide is specific to **Claude Code**. Remote Control is a Claude Code feature and is not available on Gemini CLI or OpenCode.
+> Not verified here: this describes upstream's documentation of Claude Code Remote Control. Check Anthropic's current docs for requirements and availability.
 
 > A guide to controlling your vault from your phone using Claude Code's Remote Control feature.
 
@@ -22,7 +22,7 @@ Your Obsidian vault (local files)
 
 ### A real-world example
 
-I use this on the go. Before leaving, I start a Remote Control session on my laptop. Out and about, I open the session on my phone and ask: "What's on my calendar today?" or "Save this: just had an idea about reorganizing the team standup." I can even search my vault with "What do I know about the Henderson project?" and get a full answer with sources, right from my phone.
+The upstream author uses this on the go. Before leaving, I start a Remote Control session on my laptop. Out and about, I open the session on my phone and ask: "What's on my calendar today?" or "Save this: just had an idea about reorganizing the team standup." I can even search my vault with "What do I know about the Henderson project?" and get a full answer with sources, right from my phone.
 
 The vault, the agents, the MCP servers: everything works exactly as if I were sitting at my computer.
 
@@ -94,14 +94,13 @@ Go to [claude.ai/code](https://claude.ai/code) on your phone. Your session will 
 
 ---
 
-## Using the Crew from your phone
+## Using minions from your phone
 
-Once connected, you use the Crew exactly as you would on your computer. Just type (or use voice input) and the agents respond:
+Once connected, you use minions exactly as you would on your computer. Just type (or use voice input) and the agents respond:
 
-- "Save this: had a great idea about reorganizing the team standup" (Scribe captures it)
-- "Check my email for anything urgent" (Postman scans Gmail)
-- "What's on my calendar tomorrow?" (Postman checks Google Calendar)
-- "Find my notes about the Henderson project" (Seeker searches your vault)
+- "Braindump" and then dictate (files notes, then asks before sending tasks to Sunsama)
+- "What's on my calendar tomorrow?" (Postman, once Google access is set up)
+- "What is the status of the 401k rollover?" (Seeker answers from the thread note)
 
 Everything runs on your computer. Your phone is just the interface.
 
@@ -109,7 +108,7 @@ Everything runs on your computer. Your phone is just the interface.
 
 ## Tips for mobile use
 
-- **Use voice input.** Most phones have built-in speech-to-text on the keyboard. Talking is faster than typing on a phone, and the Scribe handles messy voice input perfectly.
+- **Use voice input.** Most phones have built-in speech-to-text on the keyboard. Talking is faster than typing on a phone, and the scribe cleans up messy voice input without adding to it.
 - **Keep sessions short and focused.** Mobile is great for quick captures, grocery runs, and check-ins. Save deep work for your computer.
 - **Name your sessions.** The `--name` flag makes it easy to find the right session on `claude.ai/code` if you have multiple projects.
 - **Your computer must stay awake.** If it goes to sleep or loses internet for more than ~10 minutes, the session ends. Adjust your sleep settings before leaving.
@@ -158,5 +157,4 @@ To be clear about limitations:
 ## Further reading
 
 - [Claude Code Remote Control documentation](https://docs.anthropic.com/en/docs/claude-code/remote-control)
-- [Getting Started with the Crew](getting-started.md)
-- [Examples of daily usage](examples.md)
+- [Getting started](getting-started.md)

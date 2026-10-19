@@ -5,14 +5,19 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 VAULT_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
-INBOX="$VAULT_DIR/00-Inbox"
+
+# Folder name for the inbox role, from Meta/vault-map.md (default: Inbox)
+role_dir() {
+    local role="$1" default="$2" map="$VAULT_DIR/Meta/vault-map.md" v=""
+    [[ -f "$map" ]] && v="$(awk -F': *' -v r="$role" '/^---/{n++; next} n==1 && $1==r {gsub(/\r/,"",$2); print $2; exit}' "$map")"
+    echo "${v:-$default}"
+}
+
+INBOX="$VAULT_DIR/$(role_dir inbox Inbox)"
+mtime() { stat -c "%y" "$1" 2>/dev/null | cut -c1-16 || stat -f "%Sm" -t "%Y-%m-%d %H:%M" "$1" 2>/dev/null || echo "?"; }
 
 if [[ ! -d "$INBOX" ]]; then
-    if [[ "${1:-}" == "--count" ]]; then
-        echo "0"
-    else
-        echo "No inbox directory found at $INBOX"
-    fi
+    if [[ "${1:-}" == "--count" ]]; then echo "0"; else echo "No inbox directory found at $INBOX"; fi
     exit 0
 fi
 
@@ -20,8 +25,6 @@ if [[ "${1:-}" == "--count" ]]; then
     find "$INBOX" -name "*.md" -not -path "*/.*" 2>/dev/null | wc -l | tr -d ' '
 else
     find "$INBOX" -name "*.md" -not -path "*/.*" 2>/dev/null | while read -r f; do
-        mod=$(stat -f "%Sm" -t "%Y-%m-%d %H:%M" "$f" 2>/dev/null || stat -c "%y" "$f" 2>/dev/null | cut -c1-16 || echo "?")
-        name=$(basename "$f" .md)
-        echo "  $mod  $name"
+        echo "  $(mtime "$f")  $(basename "$f" .md)"
     done | sort -r
 fi

@@ -1,14 +1,30 @@
 ---
 name: manage-agent
 description: >
-  Edit, update, or remove an existing custom agent. Shows current config and asks
-  what to change. Also handles listing all custom agents. Triggers:
-  EN: "edit my agent", "update agent", "remove agent", "delete agent", "list agents", "show my agents".
-  IT: "modifica il mio agente", "aggiorna agente", "rimuovi agente", "lista agenti", "mostra i miei agenti".
-  FR: "modifier mon agent", "supprimer agent", "lister les agents".
-  ES: "editar mi agente", "eliminar agente", "listar agentes".
-  DE: "Agenten bearbeiten", "Agenten löschen", "Agenten auflisten".
-  PT: "editar meu agente", "remover agente", "listar agentes".
+  Edit, update, or remove a custom agent, or list all agents.
+  Triggers: "edit my agent", "update agent", "remove agent", "delete agent", "list agents", "show my agents".
+---
+
+## Vault Path Resolution
+
+Read `Meta/vault-map.md` (always this literal path) to resolve folder paths. Its YAML frontmatter maps each role to a folder. Substitute **only** the tokens below. Leave other `{{...}}` patterns (`{{date}}`, `{{Name}}`, `{{ISO timestamp}}`) alone, they are placeholders.
+
+If vault-map.md is absent, tell the user once ("No vault-map.md found, using default paths"), then use:
+
+| Token | Default |
+|-------|---------|
+| `{{inbox}}` | `Inbox` |
+| `{{daily}}` | `Daily` |
+| `{{threads}}` | `Threads` |
+| `{{commitments}}` | `Commitments` |
+| `{{people}}` | `People` |
+| `{{archive}}` | `Archive` |
+| `{{meta}}` | `Meta` |
+
+If vault-map.md exists but a role is missing, ask the user which folder to use before continuing.
+
+The vault model (what each folder is for) is in `.claude/references/vault-model.md`. The rules every note follows are in `.claude/references/note-rules.md`. Read both when you are unsure where something goes or how to write it.
+
 ---
 
 # Manage Agent — Edit, Remove, and List Custom Agents
@@ -17,15 +33,15 @@ You are the Architect running the Agent Management flow. You handle editing, upd
 
 ## Golden Rule: Language
 
-**Always respond to the user in their language. Match the language the user writes in.** If the user writes in Italian, respond in Italian. If they write in Japanese, respond in Japanese. This skill file is written in English for universality, but your output adapts to the user.
+Respond in the language the user writes in. This file is in English.
 
 ---
 
 ## Post-it Protocol
 
-At the START of every execution, read `Meta/states/architect.md` (if it exists). Check if there is an active agent-management flow. If there is, **resume from the recorded state** — do NOT restart.
+At the START of every execution, read `{{meta}}/states/architect.md` (if it exists). Check if there is an active agent-management flow. If there is, **resume from the recorded state** — do NOT restart.
 
-At the END of every execution, write your post-it to `Meta/states/architect.md`:
+At the END of every execution, write your post-it to `{{meta}}/states/architect.md`:
 
 ```markdown
 ---
@@ -71,7 +87,7 @@ When the user says "edit my agent", "update agent X", "modify agent X", or equiv
 
 6. **Update agents.md.** If the change affects the agent's role description, update `.claude/references/agents.md`.
 
-7. **Log the change** in `Meta/agent-log.md`.
+7. **Log the change** in `{{meta}}/agent-log.md`.
 
 8. **Report to the user**: confirm what was changed and remind them of the trigger phrases.
 
@@ -90,7 +106,7 @@ When the user says "remove agent", "delete agent X", "rimuovi agente", or equiva
    - Delete the agent file from `.claude/agents/{name}.md`
    - Update `.claude/references/agents-registry.md`: set the agent's status to `disabled` (do NOT delete the row — keep it for historical reference)
    - Update `.claude/references/agents.md`: remove or mark the agent's section as disabled under "Custom Agents"
-   - Log the removal in `Meta/agent-log.md`
+   - Log the removal in `{{meta}}/agent-log.md`
 
 4. **If not confirmed:** acknowledge and do nothing.
 
@@ -118,7 +134,7 @@ When the user says "list agents", "show my agents", "lista agenti", "see my agen
 
 ## Validation Rules
 
-- **Never allow editing core agents' names.** The 8 core agent names (architect, scribe, sorter, seeker, connector, librarian, transcriber, postman) are immutable. You can edit their content if the user insists, but warn them that updates via `updateme.sh` will overwrite their changes.
+- **Never allow editing core agents' names.** The 6 core agent names (architect, scribe, sorter, seeker, librarian, postman) are immutable. You can edit their content if the user insists, but warn them that updates via `updateme.sh` will overwrite their changes.
 - **Never allow removing core agents.** Core agents can only be deactivated through the user profile (active-agents list), not deleted.
 - **Never grant Bash access unless the agent genuinely needs filesystem operations.**
 - **Always preserve the Inter-Agent Coordination section** when editing — it is mandatory for every agent.

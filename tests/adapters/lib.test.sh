@@ -247,24 +247,3 @@ HEREDOC
   return $result
 }
 
-test_rewrite_platform_paths_opencode() {
-  local tmp; tmp="$(mktemp)"
-  echo 'See .platform/references/agents.md and DISPATCHER.md' > "$tmp"
-  rewrite_platform_paths "$tmp" "opencode" "AGENTS.md"
-  local result=0
-  grep -q '\.opencode/references/agents.md' "$tmp" || { echo "not rewritten to .opencode/"; result=1; }
-  grep -q 'AGENTS.md' "$tmp" || { echo "not rewritten to AGENTS.md"; result=1; }
-  rm -f "$tmp"
-  return $result
-}
-
-test_rewrite_platform_paths_gemini() {
-  local tmp; tmp="$(mktemp)"
-  echo 'See .platform/agents/scribe.md and DISPATCHER.md' > "$tmp"
-  rewrite_platform_paths "$tmp" "gemini" "GEMINI.md"
-  local result=0
-  grep -q '\.gemini/agents/scribe.md' "$tmp" || { echo "not rewritten to .gemini/"; result=1; }
-  grep -q 'GEMINI.md' "$tmp" || { echo "not rewritten to GEMINI.md"; result=1; }
-  rm -f "$tmp"
-  return $result
-}

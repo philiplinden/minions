@@ -98,6 +98,14 @@ fi
 install_dispatcher "$DISPATCHER_SRC" "$DISPATCHER_DST"
 DISPATCHER_CHANGED=$_LAST_CHANGED
 
+# ── Vault-level files for other clients ──────────────────────────────────────
+if [[ -d "$REPO_DIR/vault" ]]; then
+  mkdir -p "$VAULT_DIR/Meta"
+  copy_if_changed "$REPO_DIR/vault/protocol.md" "$VAULT_DIR/Meta/protocol.md"
+  # AGENTS.md is created once and then belongs to the user
+  [[ -f "$VAULT_DIR/AGENTS.md" ]] || cp "$REPO_DIR/vault/AGENTS.md" "$VAULT_DIR/AGENTS.md"
+fi
+
 # ── MCP ───────────────────────────────────────────────────────────────────────
 [[ -f "$MCP_SRC" ]] && copy_if_changed "$MCP_SRC" "$MCP_DST"
 

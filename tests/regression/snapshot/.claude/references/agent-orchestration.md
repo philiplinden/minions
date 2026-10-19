@@ -25,7 +25,7 @@ Skills are checked **before** agents. They handle complex, multi-step workflows 
 
 ### How it works
 
-- The dispatcher maintains a **skill routing table** (defined in `CLAUDE.md`) with trigger phrases in multiple languages.
+- The dispatcher maintains a **skill routing table** (defined in `CLAUDE.md`) with trigger phrases.
 - If a user message matches a skill trigger, the skill is invoked via the **Skill tool** (not the Agent tool). The dispatcher does NOT also invoke the source agent.
 - Skills run in the **main conversation context**, preserving multi-turn state. This is different from agents, which run as subprocesses.
 - If no skill matches, the dispatcher falls through to the **agent routing table**.
@@ -33,7 +33,7 @@ Skills are checked **before** agents. They handle complex, multi-step workflows 
 ### Skill-to-agent chaining
 
 Skills can still produce output that triggers agent chaining:
-- A skill may include `### Suggested next agent` in its output (e.g., `/onboarding` may suggest Connector to link newly created notes).
+- A skill may include `### Suggested next agent` in its output (e.g., `/braindump` may suggest the librarian if it finds duplicates).
 - The dispatcher reads this output and applies the same chaining rules as for agents (check registry, check call chain, max depth 3).
 - Skills count as step 1 in the call chain when they produce agent suggestions.
 
@@ -61,20 +61,15 @@ Multiple suggestions are allowed — list them all. The dispatcher prioritizes a
 ```markdown
 ### Suggested next agent
 - **Agent**: architect
-- **Reason**: No area exists for "Personal Finance" — 3 notes were placed in Inbox as fallback
-- **Context**: Notes: "Monthly Budget March.md", "Savings Goals.md", "Expense Tracking.md". Suggest creating 02-Areas/Personal Finance/ with sub-folders and MOC.
+- **Reason**: A new long-running matter ("car insurance") has no thread
+- **Context**: Three captures in the inbox mention it. Suggest creating Threads/car-insurance.md.
 ```
 
 ```markdown
 ### Suggested next agent
-- **Agent**: connector
-- **Reason**: 5 recently filed notes about "Machine Learning" have no cross-links
-- **Context**: Notes in 03-Resources/Technology/ML/. They reference shared concepts (gradient descent, neural networks) but have zero wikilinks between them.
-
-### Suggested next agent
-- **Agent**: architect
-- **Reason**: MOC for Machine Learning is missing
-- **Context**: There are now 8 notes under this topic but no MOC in MOC/ folder.
+- **Agent**: librarian
+- **Reason**: Two threads look like duplicates (401k-rollover and old-401k)
+- **Context**: Both describe the same rollover. Needs the user to confirm a merge.
 ```
 
 ### Suggesting a New Agent
@@ -126,7 +121,7 @@ Every user request has a **call chain** — the ordered list of agents invoked s
 
 If the dispatcher would need a 4th agent, it:
 - Returns the current results to the user
-- Includes a summary of what was deferred: _"The Connector also detected 5 orphan notes that need linking — you can say 'connect the notes' to handle that."_
+- Includes a summary of what was deferred: _"The librarian also found 5 stale threads — say 'check the vault' to handle that."_
 
 ---
 
@@ -146,7 +141,7 @@ Custom agents are created by the Architect and stored in `.claude/agents/`. They
 ## What Agents Should NOT Do
 
 - ❌ **Do NOT reference `Meta/agent-messages.md`** — the shared message board is deprecated
-- ❌ **Do NOT edit other agents' prompt/config files** (e.g., `.claude/agents/*.md`) — normal vault notes/MOC edits are still allowed per your responsibilities; all coordination goes through the dispatcher
+- ❌ **Do NOT edit other agents' prompt/config files** (e.g., `.claude/agents/*.md`) — normal vault note edits are still allowed per your responsibilities; all coordination goes through the dispatcher
 - ❌ **Do NOT block waiting for another agent** — finish your task and suggest next steps in your output
 - ❌ **Do NOT call other agents** — only the dispatcher invokes agents
 

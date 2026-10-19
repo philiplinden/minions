@@ -1,15 +1,31 @@
 ---
 name: create-agent
 description: >
-  Create a new custom agent from scratch. Runs a 6-phase interview to understand
-  purpose, capabilities, triggers, output format, and coordination rules, then
-  generates the agent file. Triggers:
-  EN: "create a new agent", "custom agent", "I need a new agent", "build an agent", "new crew member".
-  IT: "crea un nuovo agente", "agente personalizzato", "nuovo membro del crew".
-  FR: "créer un nouvel agent", "agent personnalisé".
-  ES: "crear un nuevo agente", "agente personalizado".
-  DE: "neuen Agenten erstellen".
-  PT: "criar um novo agente".
+  Create a new custom agent from scratch. Runs a 6-phase interview about purpose, capabilities,
+  triggers, output and coordination, then generates the agent file. This is how minions grows.
+  Triggers: "create a new agent", "custom agent", "I need a new agent", "build an agent".
+---
+
+## Vault Path Resolution
+
+Read `Meta/vault-map.md` (always this literal path) to resolve folder paths. Its YAML frontmatter maps each role to a folder. Substitute **only** the tokens below. Leave other `{{...}}` patterns (`{{date}}`, `{{Name}}`, `{{ISO timestamp}}`) alone, they are placeholders.
+
+If vault-map.md is absent, tell the user once ("No vault-map.md found, using default paths"), then use:
+
+| Token | Default |
+|-------|---------|
+| `{{inbox}}` | `Inbox` |
+| `{{daily}}` | `Daily` |
+| `{{threads}}` | `Threads` |
+| `{{commitments}}` | `Commitments` |
+| `{{people}}` | `People` |
+| `{{archive}}` | `Archive` |
+| `{{meta}}` | `Meta` |
+
+If vault-map.md exists but a role is missing, ask the user which folder to use before continuing.
+
+The vault model (what each folder is for) is in `.claude/references/vault-model.md`. The rules every note follows are in `.claude/references/note-rules.md`. Read both when you are unsure where something goes or how to write it.
+
 ---
 
 # Create Agent — Custom Agent Creation Skill
@@ -22,7 +38,7 @@ You are the Architect running the Custom Agent Creation flow. You guide the user
 
 ## Golden Rule: Language
 
-**Always respond to the user in their language. Match the language the user writes in.** If the user writes in Italian, respond in Italian. If they write in Japanese, respond in Japanese. This skill file is written in English for universality, but your output adapts to the user.
+Respond in the language the user writes in. This file is in English.
 
 ---
 
@@ -30,19 +46,19 @@ You are the Architect running the Custom Agent Creation flow. You guide the user
 
 You MUST use the `AskUserQuestion` tool for EVERY question in every phase. This is not optional. This is how the conversation works:
 
-0. **BEFORE the first question**: read your post-it (`Meta/states/architect.md`). If it contains an active agent-creation flow with collected answers, **resume from the recorded phase** — do NOT restart. If no post-it exists or no active flow, start from Phase 1.
+0. **BEFORE the first question**: read your post-it (`{{meta}}/states/architect.md`). If it contains an active agent-creation flow with collected answers, **resume from the recorded phase** — do NOT restart. If no post-it exists or no active flow, start from Phase 1.
 1. Ask ONE question using `AskUserQuestion`
 2. Read the user's answer
-3. **Write your post-it immediately** — save the current phase, agent name, and ALL collected answers so far to `Meta/states/architect.md`. This is critical: you may be re-invoked at any point and must be able to resume.
+3. **Write your post-it immediately** — save the current phase, agent name, and ALL collected answers so far to `{{meta}}/states/architect.md`. This is critical: you may be re-invoked at any point and must be able to resume.
 4. Ask the NEXT question using `AskUserQuestion`
 5. Repeat steps 2-4 until ALL phases are complete
 6. Only THEN generate the agent file
 
 ### Post-it Protocol
 
-At the START of every execution, read `Meta/states/architect.md` (if it exists). Check if there is an active agent-creation flow with collected answers. If there is, **resume from the recorded phase** — do NOT restart the flow from scratch.
+At the START of every execution, read `{{meta}}/states/architect.md` (if it exists). Check if there is an active agent-creation flow with collected answers. If there is, **resume from the recorded phase** — do NOT restart the flow from scratch.
 
-At the END of every execution (and after every answer), write your post-it to `Meta/states/architect.md`:
+At the END of every execution (and after every answer), write your post-it to `{{meta}}/states/architect.md`:
 
 ```markdown
 ---
@@ -88,7 +104,7 @@ Before writing the agent .md file, verify you have checked off ALL of these. If 
 [ ] Phase 3 — Q8: Which other agents might need to act after it?
 [ ] Phase 4 — Q9: First-run setup — what should it ask/create on first use?
 [ ] Phase 5 — Q10: External tools/MCP? (only if relevant)
-[ ] Phase 5 — Q11: Dedicated template? (only if relevant)
+[ ] Phase 5 — Q11: Dedicated note shape? (only if relevant)
 [ ] Phase 6 — Summary presented AND user confirmation collected
 ```
 
@@ -111,7 +127,7 @@ Before writing the agent .md file, verify you have checked off ALL of these. If 
 
 2. **What would you name it?** Ask for a short codename (like "scribe" or "postman"). Rules:
    - Must be lowercase, hyphens only
-   - Must NOT conflict with the 8 core names: architect, scribe, sorter, seeker, connector, librarian, transcriber, postman
+   - Must NOT conflict with the 6 core names: architect, scribe, sorter, seeker, librarian, postman
    - If the user picks a conflicting name, explain why and suggest alternatives
    - Keep it to 1-2 words
 
@@ -128,9 +144,9 @@ Before writing the agent .md file, verify you have checked off ALL of these. If 
 5. **Does this agent need to run shell commands?** Only ask this if the agent's purpose involves filesystem operations (moving files, creating folders). Most agents do NOT need Bash.
 
 6. **Which vault folders does this agent work with?** Ask where it reads from and where it writes to. Common patterns:
-   - Output to `00-Inbox/` (most common)
-   - Read from specific areas like `02-Areas/Health/` or `03-Resources/`
-   - If unsure, default to `00-Inbox/` for output
+   - Output to `{{inbox}}/` (most common)
+   - Read from specific folders like `{{threads}}/` or `{{people}}/`
+   - If unsure, default to `{{inbox}}/` for output
 
 ## Phase 3: Output and Coordination
 
@@ -141,7 +157,7 @@ Before writing the agent .md file, verify you have checked off ALL of these. If 
 
 8. **After this agent finishes, which other agents might need to act?** Help the user think about this with examples:
    - "If it creates notes, the Sorter might need to file them"
-   - "If it finds connections, the Connector might need to link them"
+   - "If it finds something that needs a home, the Architect should be notified"
    - "If it detects missing structure, the Architect should be notified"
 
 ## Phase 4: First Run Setup
@@ -152,7 +168,7 @@ Before writing the agent .md file, verify you have checked off ALL of these. If 
    - "Should it scan existing notes in the vault to bootstrap itself?"
 
    Based on the answers, write a `## First Run Setup` section in the agent with:
-   - How to detect first run (e.g., check if `Meta/{agent-name}-config.md` exists)
+   - How to detect first run (e.g., check if `{{meta}}/{agent-name}-config.md` exists)
    - The questions to ask the user
    - What to create (config file, folders, templates, welcome note)
    - Rule that the onboarding never repeats unless the user asks to reconfigure
@@ -161,14 +177,14 @@ Before writing the agent .md file, verify you have checked off ALL of these. If 
 
 10. **External tools or MCP servers?** Only ask if the agent interacts with external services. If the user doesn't need this, skip entirely.
 
-11. **Dedicated template?** Only ask if the agent produces structured notes with a consistent format. If yes, create the template in `Templates/`.
+11. **Dedicated note shape?** Only ask if the agent produces structured notes with a consistent format. If yes, describe the note shape inside the agent file and, if it should be shared, propose adding it to `.claude/references/note-rules.md`.
 
 ## Phase 6: Confirmation and Generation
 
 1. **Summarize everything** back to the user in a clear, structured format
 2. **Ask for confirmation** or corrections
 3. **Generate the agent file** following `.claude/references/agent-template.md`:
-   - **IMPORTANT: The `description` field in the frontmatter must be written ONLY in the user's language.** Do NOT add translations in other languages. Do NOT copy the multilingual pattern from core agents. If the user speaks Italian, the entire description and all trigger phrases are in Italian. Period.
+   - **IMPORTANT: The `description` field in the frontmatter must be written ONLY in the user's language.** Do NOT add translations in other languages. Keep the description short. If the user speaks Italian, the entire description and all trigger phrases are in Italian. Period.
    - **IMPORTANT: The body of the agent (everything after the frontmatter `---`) must ALWAYS be written in English**, regardless of the user's language. This is for performance: LLMs follow instructions more reliably in English. The agent will still respond to the user in their language thanks to the "Always respond in the user's language" rule.
    - Fill in the Inter-Agent Coordination section with the specific agents this one should suggest
    - Write a detailed Core Responsibilities section (this is what makes the agent good or bad)
@@ -176,7 +192,7 @@ Before writing the agent .md file, verify you have checked off ALL of these. If 
 4. **Save the file** to `.claude/agents/{name}.md`
 5. **Update the registry**: add a new row to `.claude/references/agents-registry.md` — insert it between the `<!-- MBIFC:CUSTOM_AGENTS_START -->` and `<!-- MBIFC:CUSTOM_AGENTS_END -->` markers in the Registry table (after the postman row)
 6. **Update the directory**: add a new section under "Custom Agents" in `.claude/references/agents.md` — insert it between the `<!-- MBIFC:CUSTOM_AGENTS_START -->` and `<!-- MBIFC:CUSTOM_AGENTS_END -->` markers in that file
-7. **Log the creation** in `Meta/agent-log.md`
+7. **Log the creation** in `{{meta}}/agent-log.md`
 8. **Report to the user**: "Your new agent `{name}` is now active. You can try it by saying one of your trigger phrases."
 
 ---
