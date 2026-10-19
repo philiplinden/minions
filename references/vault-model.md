@@ -1,5 +1,7 @@
 # Vault Model
 
+The user cooks (dictates, decides, does the work); the agents tend the garden so that anything can be found again quickly and the first result is the current one. Tidying is part of the job, not an extra: see `/defrag`, `/deep-clean`, `/tag-garden` and the connector.
+
 The vault is flat on purpose. Seven folders, no more. Claude files everything; the user does not maintain structure by hand. Folder names are resolved through `Meta/vault-map.md`.
 
 | Role | Default folder | What lives there |

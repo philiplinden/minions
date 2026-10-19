@@ -14,6 +14,7 @@ The registry is designed to grow: custom agents are added as new rows following 
 | scribe | Capture | Turn dictation or pasted text into inbox captures without inventing content. | Raw text, dictation, "save this" | Capture notes in `{{inbox}}/` | active |
 | sorter | Inbox Filing | File captures into daily notes, threads, commitments and people; report task candidates. | Unsorted captures in the inbox | Notes filed, captures archived, task candidates listed | active |
 | seeker | Search & Answer | Search and answer from notes. Read-only. | "find", "status of", "what do I know about" | Cited answers, timelines, stale lists | active |
+| connector | Links | Add missing links between threads, commitments, people and daily notes; find orphans; never rewrites content. | "connect the notes", "what's related to", "orphans" | Links added, orphan and graph-health reports | active |
 | librarian | Vault Health | Check links, frontmatter, stale threads, overdue commitments, duplicates. | "check the vault", "vault health" | Health reports, safe fixes | active |
 | postman | Gmail & Calendar (thin) | Read and search Gmail and Calendar via `gws` (MCP read-only fallback). Capture, draft or create only on request and with confirmation. | Email or calendar questions | Search results, inbox captures on request | active |
 <!-- MBIFC:CUSTOM_AGENTS_START -->
@@ -51,7 +52,7 @@ Custom agents are created by the Architect through a conversational flow with th
 ### Naming Rules
 
 - Custom agent names must be lowercase, hyphens only (e.g., `habit-tracker`, `recipe-manager`)
-- Names must NOT conflict with core agent names: architect, scribe, sorter, seeker, librarian, postman
+- Names must NOT conflict with core agent names: architect, scribe, sorter, seeker, connector, librarian, postman
 - Names should be descriptive and concise (1-2 words)
 
 ### Priority
@@ -69,6 +70,9 @@ Skills handle complex, multi-step workflows extracted from agents. They are chec
 | `/braindump` | scribe + sorter | "braindump", "brain dump", "let me dump", "get this out of my head" | Capture a dump, file notes, offer task candidates for the task manager | active |
 | `/onboarding` | architect | "initialize the vault", "set up the vault", "run the interview", "update my profile" | Short setup plus optional interview | active |
 | `/inbox-triage` | sorter | "triage the inbox", "sort my notes", "file my notes", "process the inbox" | Interactive inbox filing | active |
+| `/defrag` | librarian | "defrag", "tidy the vault", "weekly tidy", "reduce the noise" | Archive done work, relocate old log entries, flag stale status, merge duplicates | active |
+| `/deep-clean` | librarian | "deep clean", "thorough cleanup", "the vault is a mess" | Audit plus stale, redundant, naming and link repair | active |
+| `/tag-garden` | librarian | "tag garden", "clean up tags", "fix the vocabulary", "aliases" | Tags, type/status values, aliases | active |
 | `/vault-audit` | librarian | "vault audit", "check the vault", "vault health", "clean up the vault" | Full audit with guided fixes | active |
 | `/create-agent` | architect | "create a new agent", "I need a new agent" | Custom agent creation (6-phase interview) | active |
 | `/manage-agent` | architect | "edit my agent", "remove agent", "list agents" | Edit, remove, list agents | active |

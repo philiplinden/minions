@@ -21,12 +21,10 @@ then fix its vault paths (it assumes the old PARA folders) and add it to `DISPAT
 
 | Capability | Paths | Notes |
 |------------|-------|-------|
-| Link analysis agent (connector) | `agents/connector.md`, `docs/agents/connector.md` | Wikilink and graph health. Needs MOC/area wording rewritten. |
 | Audio and transcript processing | `agents/transcriber.md`, `skills/transcribe` | Meeting and lecture transcripts. |
 | Email triage to notes | `skills/email-triage` | Needs postman changes too. Hey-specific parts removed. |
 | Meeting prep, weekly agenda, deadline radar | `skills/meeting-prep`, `skills/weekly-agenda`, `skills/deadline-radar` | Built on postman. Sunsama may fit weekly planning better. |
 | Contact sync | `skills/contact-sync` | Needs an `apple-contacts` MCP. |
-| Deep structural cleanup | `skills/defrag`, `skills/deep-clean`, `skills/tag-garden` | Overlapped `/vault-audit`. Written for the PARA layout. |
 | Hey mail support | `orchestra/hey-*`, `orchestra/tracker-*`, Hey sections of the old postman | Dropped. |
 | Other platforms | `adapters/codex-cli`, `adapters/gemini-cli`, `adapters/opencode` | Dropped. Claude Code only. |
 | Desktop notification hook | `hooks/notify.*` | Dropped. |

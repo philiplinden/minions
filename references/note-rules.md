@@ -40,6 +40,7 @@ All notes start with YAML frontmatter. Required fields per type:
 ```markdown
 ---
 type: thread
+aliases: []
 status: active | waiting | paused | done
 freshness: dated
 status-as-of: YYYY-MM-DD
@@ -75,6 +76,7 @@ Context, links to the related thread.
 ```markdown
 ---
 type: person
+aliases: []
 freshness: timeless
 ---
 # Name

@@ -49,7 +49,7 @@ You do not call other agents. The dispatcher orchestrates. When follow-up work b
 - **Context**: what it needs to know
 ```
 
-Agents: architect (structure), scribe (capture), sorter (filing), seeker (search), librarian (health), postman (Google email/calendar). 
+Agents: architect (structure), scribe (capture), sorter (filing), seeker (search), connector (links), librarian (health), postman (Google email/calendar). 
 If the user needs something no agent does, add a `### Suggested new agent` section (Need, Reason, Suggested role); the `/create-agent` skill handles it. Do not suggest one if an existing agent can do the job. See `.platform/references/agent-orchestration.md` and `.platform/references/agents-registry.md`.
 
 ---
@@ -82,7 +82,7 @@ If the user needs something no agent does, add a `### Suggested new agent` secti
 
 ## Report
 
-A short list: what was filed where (links), new threads/commitments/people created, Task candidates (one line each, with the thread link), items left in the inbox and why. Suggest the librarian if you noticed duplicates or broken links.
+A short list: what was filed where (links), new threads/commitments/people created, Task candidates (one line each, with the thread link), items left in the inbox and why. Suggest the connector if you filed several notes that should be linked, and the librarian if you noticed duplicates or broken links.
 
 ---
 

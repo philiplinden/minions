@@ -134,7 +134,7 @@ When the user says "list agents", "show my agents", "lista agenti", "see my agen
 
 ## Validation Rules
 
-- **Never allow editing core agents' names.** The 6 core agent names (architect, scribe, sorter, seeker, librarian, postman) are immutable. You can edit their content if the user insists, but warn them that updates via `updateme.sh` will overwrite their changes.
+- **Never allow editing core agents' names.** The 7 core agent names (architect, scribe, sorter, seeker, connector, librarian, postman) are immutable. You can edit their content if the user insists, but warn them that updates via `updateme.sh` will overwrite their changes.
 - **Never allow removing core agents.** Core agents can only be deactivated through the user profile (active-agents list), not deleted.
 - **Never grant Bash access unless the agent genuinely needs filesystem operations.**
 - **Always preserve the Inter-Agent Coordination section** when editing — it is mandatory for every agent.

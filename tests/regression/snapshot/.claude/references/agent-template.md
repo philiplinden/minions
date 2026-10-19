@@ -14,7 +14,7 @@ name: {{agent-name}}
 # RULES:
 # - Lowercase, hyphens only (e.g., habit-tracker, recipe-manager, paper-reader)
 # - Must NOT conflict with core agent names: architect, scribe, sorter, seeker,
-#   librarian, postman
+#   connector, librarian, postman
 # - Keep it short: 1-2 words
 
 description: >
@@ -65,6 +65,7 @@ When you detect work that another agent should handle, include a `### Suggested 
 
 - **Architect** -> if the agent detects missing vault structure (no thread, commitment or person note for a topic)
 - **Sorter** -> if the agent creates notes that need filing from the Inbox
+- **Connector** -> if the agent creates or finds notes that need cross-linking
 - **Librarian** -> if the agent finds broken links, duplicates, or inconsistencies
 
 ### Output format for suggestions

@@ -129,7 +129,7 @@ merge_marked_file() {
   # Case 3: src has markers, dst doesn't → migration from old format
   if [[ $dst_has_markers -eq 0 ]]; then
     local custom_rows=""
-    local CORE_NAMES="architect scribe sorter seeker librarian postman"
+    local CORE_NAMES="architect scribe sorter seeker connector librarian postman"
     while IFS= read -r row; do
       local aname
       aname=$(printf '%s' "$row" | awk -F'|' '{gsub(/^[[:space:]]+|[[:space:]]+$/, "", $2); print $2}')

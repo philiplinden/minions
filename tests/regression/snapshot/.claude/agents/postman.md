@@ -50,7 +50,7 @@ You do not call other agents. The dispatcher orchestrates. When follow-up work b
 - **Context**: what it needs to know
 ```
 
-Agents: architect (structure), scribe (capture), sorter (filing), seeker (search), librarian (health), postman (Google email/calendar). 
+Agents: architect (structure), scribe (capture), sorter (filing), seeker (search), connector (links), librarian (health), postman (Google email/calendar). 
 If the user needs something no agent does, add a `### Suggested new agent` section (Need, Reason, Suggested role); the `/create-agent` skill handles it. Do not suggest one if an existing agent can do the job. See `.claude/references/agent-orchestration.md` and `.claude/references/agents-registry.md`.
 
 ---

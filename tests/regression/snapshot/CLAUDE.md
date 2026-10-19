@@ -27,6 +27,9 @@ Only the skills and agents defined in `.claude/skills/` and `.claude/agents/` ex
 | `/braindump` | The user wants to get everything out of their head: dictation, a long stream, "I have a lot on my mind". Files notes, then offers task candidates for the user's task manager. | "braindump", "brain dump", "let me dump", "get this out of my head" |
 | `/onboarding` | First-time setup, the interview, or updating the profile. | "initialize the vault", "set up the vault", "run the interview", "update my profile" |
 | `/inbox-triage` | Interactive sort of the inbox. | "triage the inbox", "sort my notes", "file my notes", "process the inbox" |
+| `/defrag` | Weekly tidy: archive done work, relocate old log entries, flag stale status, merge duplicates. | "defrag", "tidy the vault", "weekly tidy", "reduce the noise" |
+| `/deep-clean` | Heavy cleanup when the vault is noisy: stale and redundant content, naming, links, tags. | "deep clean", "thorough cleanup", "the vault is a mess" |
+| `/tag-garden` | Tags, type/status values, aliases so search finds notes under the user's own words. | "tag garden", "clean up tags", "fix the vocabulary", "aliases" |
 | `/vault-audit` | Full audit with guided fixes. | "vault audit", "check the vault", "vault health", "clean up the vault" |
 | `/create-agent` | Add a new agent. This is how minions grows. | "create a new agent", "I need an agent that" |
 | `/manage-agent` | Edit, remove or list agents. | "edit my agent", "remove agent", "list agents" |
@@ -38,10 +41,11 @@ Only the skills and agents defined in `.claude/skills/` and `.claude/agents/` ex
 | **scribe** | Capture: "save this", "note this", "jot this down", pasted text, quick thoughts. Writes to the inbox only. |
 | **sorter** | Filing the inbox without a conversation: "sort the inbox" when the user does not want questions. |
 | **seeker** | Questions about the vault: "find", "what do I know about", "status of", "timeline of". Read-only. |
+| **connector** | Links: "connect the notes", "what's related to", orphan notes. |
 | **architect** | Structure and rules: new folder, naming, vault map, profile edits. |
 | **librarian** | Quick health check, stale threads, overdue commitments. |
 | **postman** | Gmail and Google Calendar: search, view, capture on request, draft or create with confirmation. |
-| **custom agents** | Anything the user added. Lower priority than the core six. See the registry. |
+| **custom agents** | Anything the user added. Lower priority than the core seven. See the registry. |
 
 ## Multi-agent routing
 
@@ -49,7 +53,7 @@ After an agent returns, read its output before replying:
 
 1. New captures sitting in the inbox? Consider **sorter**.
 2. Missing structure or a rule question? Consider **architect**.
-3. Broken links, stale threads, duplicates? Consider **librarian**.
+3. Broken links, stale threads, duplicates? Consider **librarian**. Orphan or unlinked notes? Consider **connector**.
 4. A `### Suggested next agent` section? Validate it against the registry and consider it.
 5. A `### Suggested new agent` section? Ask the user whether to run `/create-agent`.
 

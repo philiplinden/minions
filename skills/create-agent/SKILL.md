@@ -127,7 +127,7 @@ Before writing the agent .md file, verify you have checked off ALL of these. If 
 
 2. **What would you name it?** Ask for a short codename (like "scribe" or "postman"). Rules:
    - Must be lowercase, hyphens only
-   - Must NOT conflict with the 6 core names: architect, scribe, sorter, seeker, librarian, postman
+   - Must NOT conflict with the 7 core names: architect, scribe, sorter, seeker, connector, librarian, postman
    - If the user picks a conflicting name, explain why and suggest alternatives
    - Keep it to 1-2 words
 

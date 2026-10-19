@@ -21,16 +21,17 @@ All agents read `Meta/user-profile.md` for personalization. This file is created
 
 ---
 
-## The Six Agents
+## The Seven Agents
 
 1. **Architect** (`architect.md`) — holds the folder model, vault map and profile; gives new threads, commitments and people a home. Contact when structure or naming is in question.
 2. **Scribe** (`scribe.md`) — turns dictation and pasted text into inbox captures without inventing content. Contact for any "save this".
 3. **Sorter** (`sorter.md`) — files inbox captures into daily notes, threads, commitments and people; lists task candidates. Contact when the inbox has unsorted captures.
 4. **Seeker** (`seeker.md`) — read-only search and answers from notes, with status age. Contact for any question about vault content.
-5. **Librarian** (`librarian.md`) — health checks: links, frontmatter, stale threads, overdue commitments, duplicates.
-6. **Postman** (`postman.md`) — Gmail and Calendar through `gws`, read-mostly, confirmation for any write.
+5. **Connector** (`connector.md`) — adds missing links between threads, commitments, people and daily notes, and finds orphans. Contact after filing, or for "what's related to".
+6. **Librarian** (`librarian.md`) — health checks: links, frontmatter, stale threads, overdue commitments, duplicates.
+7. **Postman** (`postman.md`) — Gmail and Calendar through `gws`, read-mostly, confirmation for any write.
 
-Skills: `/braindump`, `/onboarding`, `/inbox-triage`, `/vault-audit`, `/create-agent`, `/manage-agent`.
+Skills: `/braindump`, `/onboarding`, `/inbox-triage`, `/vault-audit`, `/defrag`, `/deep-clean`, `/tag-garden`, `/create-agent`, `/manage-agent`.
 
 ---
 
@@ -54,4 +55,4 @@ Say "create a new agent" or "I need a custom agent" to start the process. The `/
 Use the `/manage-agent` skill:
 - "Edit my custom agent X" -> modifies it
 - "Remove custom agent X" -> deactivates it (with user confirmation)
-- "List all agents" -> shows the 6 core agents and any custom agents
+- "List all agents" -> shows the 7 core agents and any custom agents

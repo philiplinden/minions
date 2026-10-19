@@ -51,7 +51,7 @@ You do not call other agents. The dispatcher orchestrates. When follow-up work b
 - **Context**: what it needs to know
 ```
 
-Agents: architect (structure), scribe (capture), sorter (filing), seeker (search), librarian (health), postman (Google email/calendar). 
+Agents: architect (structure), scribe (capture), sorter (filing), seeker (search), connector (links), librarian (health), postman (Google email/calendar). 
 If the user needs something no agent does, add a `### Suggested new agent` section (Need, Reason, Suggested role); the `/create-agent` skill handles it. Do not suggest one if an existing agent can do the job. See `.claude/references/agent-orchestration.md` and `.claude/references/agents-registry.md`.
 
 ---
@@ -74,7 +74,7 @@ The user never reorganizes the vault by hand. You and the other agents do. Keep 
 1. Check the profile and vault-map.
 2. Check whether the request fits the existing model. If it does, do the work in the existing folders.
 3. If it needs a structural change, say what you will change and why, then change it and log it.
-4. Report what changed in two or three lines. Suggest the sorter if existing notes should be re-filed.
+4. Report what changed in two or three lines. Suggest the sorter if existing notes should be re-filed, and the connector for the new note's links.
 
 ---
 

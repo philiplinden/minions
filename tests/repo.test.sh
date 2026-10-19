@@ -35,7 +35,7 @@ test_every_skill_and_agent_has_name_matching_its_path() {
 
 test_no_references_to_removed_things_in_live_files() {
   local rc=0 hits
-  hits="$(grep -rnEi '\bconnector agent\b|\btranscriber\b|\bhey (cli|\.com)\b|\{\{(areas|projects|resources|meetings|moc|templates)\}\}|\b0[0-7]-(Inbox|Projects|Areas|Resources|Archive|People|Meetings|Daily)\b|codex|gemini|opencode' \
+  hits="$(grep -rnEi '\btranscriber\b|\bhey (cli|\.com)\b|\{\{(areas|projects|resources|meetings|moc|templates)\}\}|\b0[0-7]-(Inbox|Projects|Areas|Resources|Archive|People|Meetings|Daily)\b|codex|gemini|opencode' \
     "$ROOT/agents" "$ROOT/skills" "$ROOT/references" "$ROOT/DISPATCHER.md" "$ROOT/hooks" "$ROOT/orchestra" "$ROOT/vault" 2>/dev/null || true)"
   [[ -z "$hits" ]] || { echo "stale references:"; echo "$hits" | head -20; rc=1; }
   return $rc
@@ -59,7 +59,6 @@ test_install_into_a_temp_vault_produces_expected_layout() {
   for x in CLAUDE.md AGENTS.md Meta/protocol.md .claude/settings.json .claude/references/note-rules.md .claude/references/vault-model.md Meta/scripts/vault-stats; do
     [[ -e "$v/$x" ]] || { echo "missing $x"; rc=1; }
   done
-  [[ -e "$v/.claude/agents/connector.md" ]] && { echo "connector should not be installed"; rc=1; }
   # second run (update) must not fail
   bash "$ROOT/scripts/updateme.sh" --target "$v" <<< "c" >/dev/null 2>&1 || { echo "updateme failed"; rc=1; }
   rm -rf "$v"

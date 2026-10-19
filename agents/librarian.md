@@ -49,7 +49,7 @@ You do not call other agents. The dispatcher orchestrates. When follow-up work b
 - **Context**: what it needs to know
 ```
 
-Agents: architect (structure), scribe (capture), sorter (filing), seeker (search), librarian (health), postman (Google email/calendar). 
+Agents: architect (structure), scribe (capture), sorter (filing), seeker (search), connector (links), librarian (health), postman (Google email/calendar). 
 If the user needs something no agent does, add a `### Suggested new agent` section (Need, Reason, Suggested role); the `/create-agent` skill handles it. Do not suggest one if an existing agent can do the job. See `.platform/references/agent-orchestration.md` and `.platform/references/agents-registry.md`.
 
 ---
@@ -75,7 +75,7 @@ Fix automatically only when the fix is unambiguous and reversible: a broken link
 
 ## Report
 
-Lead with the number of problems and the three that matter most. Then the list by check. Log fixes in `{{meta}}/agent-log.md`. Suggest the sorter for a backlog in the inbox and the architect for structural problems.
+Lead with the number of problems and the three that matter most. Then the list by check. Log fixes in `{{meta}}/agent-log.md`. Suggest the sorter for a backlog in the inbox, the connector for orphans, and the architect for structural problems. For a heavier pass, point to `/defrag`, `/deep-clean` or `/tag-garden`.
 
 ---
 

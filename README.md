@@ -8,7 +8,7 @@ Status: first pass. The structure is in place; the pieces have not had long use.
 
 ## The idea
 
-Keeping a note system tidy takes time that busy weeks don't have, and the system then falls apart. Here the user only talks. Claude does the filing, and keeps enough history that a later session can follow the thinking without being re-told.
+Keeping a note system tidy takes time that busy weeks don't have, and the system then falls apart. Here the user only talks (the chef); Claude tends the garden: filing, linking, archiving, tidying, so that a later lookup finds the current answer quickly.
 
 Three things to know:
 
@@ -26,10 +26,12 @@ Three things to know:
 | "sort the inbox" / `/inbox-triage` | Files captures into daily notes, threads, commitments, people. |
 | "what's the status of the vendor renewal?" | The seeker answers from the thread note and says how old the status is. |
 | "check the vault" / `/vault-audit` | Broken links, stale threads, overdue commitments, duplicates. |
+| `/defrag`, `/deep-clean`, `/tag-garden` | Keep the vault findable: archive done work, relocate old logs, merge duplicates, clean tags, add aliases for your own words. |
+| "connect the notes" | The connector adds missing links and finds orphans. |
 | "initialize the vault" | Short setup, then an optional interview. |
 | "create a new agent" | Adds a custom agent. |
 
-Agents: architect, scribe, sorter, seeker, librarian, postman (a thin Gmail/Calendar layer over `gws`). Skills: braindump, onboarding, inbox-triage, vault-audit, create-agent, manage-agent. The dispatcher is [`DISPATCHER.md`](DISPATCHER.md) (installed as `CLAUDE.md`).
+Agents: architect, scribe, sorter, seeker, connector, librarian, postman (a thin Gmail/Calendar layer over `gws`). Skills: braindump, onboarding, inbox-triage, vault-audit, defrag, deep-clean, tag-garden, create-agent, manage-agent. The dispatcher is [`DISPATCHER.md`](DISPATCHER.md) (installed as `CLAUDE.md`).
 
 ## Install
 
@@ -53,8 +55,8 @@ See [`docs/growing.md`](docs/growing.md): how to add skills and agents, and a ta
 ## Layout
 
 ```
-agents/       six agents
-skills/       six skills
+agents/       seven agents
+skills/       nine skills
 references/   vault-model, note-rules, registry, orchestration, agent template
 vault/        files copied into the vault (protocol.md, AGENTS.md)
 hooks/        protect system files, validate frontmatter
