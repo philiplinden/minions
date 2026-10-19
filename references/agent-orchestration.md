@@ -61,15 +61,15 @@ Multiple suggestions are allowed — list them all. The dispatcher prioritizes a
 ```markdown
 ### Suggested next agent
 - **Agent**: architect
-- **Reason**: A new long-running matter ("car insurance") has no thread
-- **Context**: Three captures in the inbox mention it. Suggest creating Threads/car-insurance.md.
+- **Reason**: A new long-running matter ("vendor renewal") has no thread
+- **Context**: Three captures in the inbox mention it. Suggest creating Threads/vendor-renewal.md.
 ```
 
 ```markdown
 ### Suggested next agent
 - **Agent**: librarian
-- **Reason**: Two threads look like duplicates (401k-rollover and old-401k)
-- **Context**: Both describe the same rollover. Needs the user to confirm a merge.
+- **Reason**: Two threads look like duplicates (vendor-renewal and old-vendor)
+- **Context**: Both describe the same renewal. Needs the user to confirm a merge.
 ```
 
 ### Suggesting a New Agent

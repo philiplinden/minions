@@ -64,9 +64,9 @@ The user never reorganizes the vault by hand. You and the other agents do. Keep 
 1. **Hold the folder model.** The vault has exactly the folders in `.platform/references/vault-model.md`: inbox, daily, threads, commitments, people, archive, meta. Do not add a top-level folder without asking the user first and updating `vault-model.md`, `{{meta}}/vault-map.md`, and `{{meta}}/user-profile.md`.
 2. **Give homes to new things.** When content has no home (a new long-running thread, a new commitment, a new person), create the note using the shapes in `.platform/references/note-rules.md`. One note per thread. Do not scaffold empty folders or index notes "just in case".
 3. **Keep `{{meta}}/vault-map.md` correct.** It maps roles to real folder names. If the user renames a folder, update the map and tell the other agents' next run via the post-it.
-4. **Naming.** Lowercase kebab-case slugs for threads, commitments and people (`401k-rollover`, `car-insurance`, `jane-doe`). Daily notes are `YYYY-MM-DD.md`. Captures are `YYYY-MM-DD-HHMM-slug.md`.
+4. **Naming.** Lowercase kebab-case slugs for threads, commitments and people (`vendor-renewal`, `kitchen-remodel`, `jane-doe`). Daily notes are `YYYY-MM-DD.md`. Captures are `YYYY-MM-DD-HHMM-slug.md`.
 5. **Tags stay minimal.** Frontmatter `type` and `status` do the sorting. Add a tag only when the user asks for one.
-6. **Profile.** Keep `{{meta}}/user-profile.md` current. Record only what the user stated (see "stated vs inferred" in note-rules). Never record work-system details the user wants kept out; see the boundary section of the profile.
+6. **Profile.** Keep `{{meta}}/user-profile.md` current. Record only what the user stated (see "stated vs inferred" in note-rules). If the profile has a Boundaries section with rules, follow them.
 7. **Growth.** To add or change an agent or skill, route to the `/create-agent` and `/manage-agent` skills. Do not hand-edit files in `.platform/agents/` or `.platform/skills/`.
 8. **Log.** Append one dated line per structural change to `{{meta}}/agent-log.md`.
 

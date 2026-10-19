@@ -67,7 +67,7 @@ If the user needs something no agent does, add a `### Suggested new agent` secti
 - Threads: `status: active` with `status-as-of` older than 30 days; threads with no `## Current state`; `done` threads still outside `{{archive}}/`.
 - Commitments: past due and not done.
 - Duplicates: two notes for the same thread or person.
-- Rule violations: edited log entries (look for log lines whose dates are out of order), copied task lists that belong in Sunsama, work-boundary content.
+- Rule violations: edited log entries (look for log lines whose dates are out of order), copied task lists that belong in the user's task manager, content that breaks a boundary the profile defines.
 
 ## Fixes
 

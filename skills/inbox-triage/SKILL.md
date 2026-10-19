@@ -37,6 +37,6 @@ Use the sorter procedure and rules in `.platform/agents/sorter.md`, but interact
 2. For each capture, show a proposed filing in one line per section: section, destination (daily, thread, commitment, person, new thread), and any `TBD`.
 3. Ask only about ambiguous or new-thread items (use `AskUserQuestion`). File everything clear without asking.
 4. File, move processed captures to `{{archive}}/captures/`, and set `status: filed`.
-5. Report: filed items with links, task candidates (do not create them; offer `/braindump`-style confirmation for Sunsama), and anything left in the inbox.
+5. Report: filed items with links, task candidates (do not create them; offer `/braindump`-style confirmation for the task manager), and anything left in the inbox.
 
 Follow `.platform/references/note-rules.md`.

@@ -1,8 +1,8 @@
 # minions
 
-A small Claude Code setup for an Obsidian vault. You dictate or type; Claude files it into long-running threads, commitments and people, and keeps a dated log. Tasks stay in Sunsama.
+A small Claude Code setup for an Obsidian vault. You dictate or type; Claude files it into long-running threads, commitments and people, and keeps a dated log. Tasks stay in your task manager.
 
-It is a personal fork of [gnekt/My-Brain-Is-Full-Crew](https://github.com/gnekt/My-Brain-Is-Full-Crew), pruned down and reshaped for one person's workflow. The agent/skill/dispatcher machinery and the installer come from upstream (MIT, see `LICENSE`). The note rules are adapted from [eugeniughelbur/obsidian-second-brain](https://github.com/eugeniughelbur/obsidian-second-brain/blob/main/AI-FIRST.md).
+It is a personal fork of [gnekt/My-Brain-Is-Full-Crew](https://github.com/gnekt/My-Brain-Is-Full-Crew), pruned down and reshaped. It is not tied to home or work; the pattern fits either, and it starts minimal and grows with use. The agent/skill/dispatcher machinery and the installer come from upstream (MIT, see `LICENSE`). The note rules are adapted from [eugeniughelbur/obsidian-second-brain](https://github.com/eugeniughelbur/obsidian-second-brain/blob/main/AI-FIRST.md).
 
 Status: first pass. The structure is in place; the pieces have not had long use.
 
@@ -14,16 +14,17 @@ Three things to know:
 
 - **Flat vault.** Seven folders: `Inbox`, `Daily`, `Threads`, `Commitments`, `People`, `Archive`, `Meta`. No PARA tree, no maps of content, no template folder.
 - **Rules for notes.** What the user said is marked as stated and Claude's reading as inferred. Unknowns are `TBD`. Logs are append-only. Each thread has a "current state" with an as-of date. See [`references/note-rules.md`](references/note-rules.md).
-- **Tasks live in Sunsama.** Notes reference them. Claude lists task candidates and creates them only after confirmation. Work lives in other systems and is kept out.
+- **Tasks live in your task manager** (Sunsama, Linear, whatever the profile names). Notes reference them. Claude lists task candidates and creates them only after confirmation.
+- **No boundaries by default.** Onboarding asks if you want any (topics or systems to keep out); the default is none, and you can add them later.
 
 ## Use
 
 | Say | What happens |
 |-----|--------------|
-| `/braindump` | Dictate. Claude captures, files notes automatically, lists task candidates, asks before sending anything to Sunsama. |
+| `/braindump` | Dictate. Claude captures, files notes automatically, lists task candidates, asks before sending anything to the task manager. |
 | "save this" | The scribe writes a capture to `Inbox/`. |
 | "sort the inbox" / `/inbox-triage` | Files captures into daily notes, threads, commitments, people. |
-| "what's the status of the 401k rollover?" | The seeker answers from the thread note and says how old the status is. |
+| "what's the status of the vendor renewal?" | The seeker answers from the thread note and says how old the status is. |
 | "check the vault" / `/vault-audit` | Broken links, stale threads, overdue commitments, duplicates. |
 | "initialize the vault" | Short setup, then an optional interview. |
 | "create a new agent" | Adds a custom agent. |

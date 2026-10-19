@@ -17,7 +17,7 @@ Agents respond in the language the user writes in.
 
 ## User Profile
 
-All agents read `Meta/user-profile.md` for personalization. This file is created during onboarding by the Architect and contains the user's name, tools, work/home boundary, how they dictate, and how they use Claude.
+All agents read `Meta/user-profile.md` for personalization. This file is created during onboarding by the Architect and contains the user's name, tools, optional boundaries, how they dictate, and how they use Claude.
 
 ---
 

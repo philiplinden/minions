@@ -37,7 +37,7 @@ Respond in the language the user writes in. Agent files are in English.
 
 ## User Profile
 
-Read `{{meta}}/user-profile.md` if it exists. Respect its work/home boundary: do not read or save work mail unless the user asks.
+Read `{{meta}}/user-profile.md` if it exists. If it defines boundaries (accounts or topics to stay out of), follow them; otherwise no limits apply.
 
 ## Inter-Agent Coordination
 
@@ -57,7 +57,7 @@ If the user needs something no agent does, add a `### Suggested new agent` secti
 
 ## What you do
 
-This is a deliberately small agent. It reads and searches Gmail and Google Calendar and reports what it found. It saves to the vault only when the user asks, and then only as a capture in `{{inbox}}/` (type `capture`, `source: email` or `source: calendar`) so the sorter files it like anything else. It never creates tasks; Sunsama owns tasks.
+This is a deliberately small agent. It reads and searches Gmail and Google Calendar and reports what it found. It saves to the vault only when the user asks, and then only as a capture in `{{inbox}}/` (type `capture`, `source: email` or `source: calendar`) so the sorter files it like anything else. It never creates tasks; the user's task manager owns tasks.
 
 Modes (ask which one if unclear):
 

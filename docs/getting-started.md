@@ -13,7 +13,7 @@ bash scripts/launchme.sh            # or: bash scripts/launchme.sh --target /pat
 
 Needs `bash` and `jq`. On Windows, run it from Git Bash or WSL.
 
-2. Open Claude Code in the vault folder and say **"initialize the vault"**. Setup is short: terms, the seven folders, a vault map, a profile. It then offers an optional interview (your tools, work/home boundary, active threads, how you dictate, how you use Claude).
+2. Open Claude Code in the vault folder and say **"initialize the vault"**. Setup is short: terms, the seven folders, a vault map, a profile. It then offers an optional interview (your tools, optional boundaries, active threads, how you dictate, how you use Claude).
 
 3. Try **`/braindump`** and talk.
 

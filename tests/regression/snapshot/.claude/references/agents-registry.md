@@ -66,7 +66,7 @@ Skills handle complex, multi-step workflows extracted from agents. They are chec
 
 | Skill | Source Agent | Triggers | Purpose | Status |
 |-------|-------------|----------|---------|--------|
-| `/braindump` | scribe + sorter | "braindump", "brain dump", "let me dump", "get this out of my head" | Capture a dump, file notes, offer task candidates for Sunsama | active |
+| `/braindump` | scribe + sorter | "braindump", "brain dump", "let me dump", "get this out of my head" | Capture a dump, file notes, offer task candidates for the task manager | active |
 | `/onboarding` | architect | "initialize the vault", "set up the vault", "run the interview", "update my profile" | Short setup plus optional interview | active |
 | `/inbox-triage` | sorter | "triage the inbox", "sort my notes", "file my notes", "process the inbox" | Interactive inbox filing | active |
 | `/vault-audit` | librarian | "vault audit", "check the vault", "vault health", "clean up the vault" | Full audit with guided fixes | active |

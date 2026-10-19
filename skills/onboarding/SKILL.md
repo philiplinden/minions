@@ -2,7 +2,7 @@
 name: onboarding
 description: >
   Set up a vault for minions and, optionally, interview the user about their tools, threads,
-  work/home boundary, how they think and talk, and how they use Claude (Claude Code, desktop, mobile).
+  optional boundaries, how they think and talk, and how they use Claude (Claude Code, desktop, mobile).
   Setup is short; the interview is optional and can be run any time.
   Triggers: "initialize the vault", "set up the vault", "onboarding", "vault setup",
   "run the interview", "redo the interview", "update my profile".
@@ -42,8 +42,8 @@ You are the Architect. Onboarding has two stages. **Stage 1 (setup)** is short a
 2. **One section at a time.** Ask the questions of one section, record the answers, move on. Use `AskUserQuestion` for choices (the user can always type their own answer). Keep it conversational for open questions.
 3. **The user can skip anything.** "Skip" records `skipped`, not a guess.
 4. **Write the post-it after every answer** to `{{meta}}/states/architect.md` (current stage, section, answers so far). On start, read it and resume where you stopped.
-5. **Never touch work systems.** This vault is for home. Do not read, import or copy anything from work tools.
-6. **Do not create tasks.** Sunsama owns tasks. Do not write to Sunsama from onboarding.
+5. **Start minimal.** Do not ask for more than the user wants to give. Everything beyond the basics grows later through use, or by re-running the interview.
+6. **Do not create tasks.** The user's task manager owns tasks. Do not write to it from onboarding.
 
 ## Stage 1: Setup
 
@@ -116,9 +116,10 @@ terms-accepted-date: "YYYY-MM-DD"
 ## Purpose
 <stated>
 ## Tools
-TBD
-## Work/home boundary
-TBD
+Task manager: TBD
+Other tools: TBD
+## Boundaries
+None set. Everything is in scope.
 ## How I think and talk
 TBD
 ## How I use Claude
@@ -146,11 +147,15 @@ Run these sections in order, or only the ones the user picks. After each section
 
 ### A. My tools
 
-Ask which tools hold what. Start with: which task manager (Sunsama?), which project tracker (Linear?), which email and calendar, any note apps besides this vault, any other systems. For each, ask: what lives there, and what must never be duplicated into the vault. Record as `tool: what it holds / what stays out`.
+Ask which tools hold what. Start with: which task manager, which project tracker, which email and calendar, any note apps besides this vault, any other systems. For each, ask: what lives there, and what must never be duplicated into the vault. Record the task manager on the `Task manager:` line (agents read it to know where tasks go). Record other tools as `tool: what it holds / what stays out`.
 
-### B. Work/home boundary
+### B. Boundaries (optional)
 
-Ask: what counts as work. What must never be filed in this vault (systems, projects, people, topics). What should happen if a dictation mixes both (skip the work part and say so, or ask each time). Record the user's definition in their words.
+Ask whether the user wants to draw any boundaries at all, for example topics, systems, accounts or people to keep out of this vault, or content that needs extra care. Make clear that "no boundaries" is a normal answer and the default, and that boundaries can be added later at any time.
+
+If none: leave `## Boundaries` as "None set. Everything is in scope." and move on. Do not probe.
+
+If some: record each rule in the user's words, one line each, plus what to do when a dictation touches one (skip that part and say so, or ask each time). Do not add rules the user did not state.
 
 ### C. Active threads
 
@@ -167,7 +172,7 @@ Ask these, one group at a time. Do not assume any answer.
 1. Which Claude surfaces do you use? (Claude Code in a terminal; the Claude desktop app, including Claude Code in it; the Claude mobile app; claude.ai in a browser; other agent tools; other.)
 2. Where do you usually dictate or capture thoughts: phone, desktop, both? Which app?
 3. Which of these should be able to read or write this vault? For each, how does it reach the files today: Claude Code opened in the vault folder; an Obsidian MCP server (which one); the filesystem connector; Remote Control; none yet?
-4. Which connectors or MCP servers are connected in each surface (Sunsama, Linear, Gmail, Calendar, Obsidian, others)?
+4. Which connectors or MCP servers are connected in each surface (task manager, tracker, Gmail, Calendar, Obsidian, others)?
 5. Do you use Projects with custom instructions in the chat apps? Would you be willing to add a short instruction pointing at `Meta/protocol.md`?
 6. When you dictate on your phone, what do you want to happen: filed right away, saved to the inbox for later, or just answered?
 7. Is there anything a given surface should never do in this vault (for example no deletes from the phone)?

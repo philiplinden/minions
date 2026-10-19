@@ -6,7 +6,7 @@ The vault is flat on purpose. Seven folders, no more. Claude files everything; t
 |------|----------------|------------------|
 | `{{inbox}}` | `Inbox/` | Raw captures (dictation, pasted text) waiting to be filed. One file per capture. |
 | `{{daily}}` | `Daily/` | One note per day, `YYYY-MM-DD.md`. An append-only log of what happened and what was said that day. |
-| `{{threads}}` | `Threads/` | One note per long-running matter (401k rollover, car and insurance, budget, home server). Holds current state plus a dated log. |
+| `{{threads}}` | `Threads/` | One note per long-running matter (a vendor renewal, a remodel, a hiring push, a budget). Holds current state plus a dated log. |
 | `{{commitments}}` | `Commitments/` | Things the user owes someone else: a person, a thing, and a due date. One note each. |
 | `{{people}}` | `People/` | One note per person, for relationship context. |
 | `{{archive}}` | `Archive/` | Finished threads and commitments, and processed captures (`Archive/captures/`). Nothing is deleted. |
@@ -14,15 +14,15 @@ The vault is flat on purpose. Seven folders, no more. Claude files everything; t
 
 ## Where does X go?
 
-- "I talked to the insurance company today and they need the VIN" → today's daily entry, the `car-insurance` thread's log, and the `People/` note if the person matters.
-- "I need to send Sam the budget draft by Friday" → `Commitments/send-sam-budget-draft.md` (links to Sam and the budget thread). The to-do itself is for Sunsama.
-- "The 401k rollover is waiting on the old provider" → `Threads/401k-rollover.md`, update `status` and `Current state` (the user said it).
+- "I talked to the vendor today and they need the revised quote" → today's daily entry, the `vendor-renewal` thread's log, and the `People/` note if the person matters.
+- "I need to send Sam the budget draft by Friday" → `Commitments/send-sam-budget-draft.md` (links to Sam and the budget thread). The to-do itself is for the task manager.
+- "The vendor renewal is waiting on legal" → `Threads/vendor-renewal.md`, update `status` and `Current state` (the user said it).
 - Anything unclear stays in the inbox until the user confirms.
 
-## Not in this vault
+## Kept out of the vault
 
-- **Tasks.** They live in Sunsama. Notes reference a task by name; they do not copy task lists.
-- **Work-system content.** The user's work lives in separate work systems. What counts as work is recorded in the boundary section of `Meta/user-profile.md`.
+- **Tasks.** They live in the user's task manager. Notes reference a task by name; they do not copy task lists.
+- **Anything the user excludes.** Boundaries are opt-in. By default nothing is excluded. Rules, if any, are in the Boundaries section of `Meta/user-profile.md`.
 
 ## Changing the model
 

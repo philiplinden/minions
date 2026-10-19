@@ -67,7 +67,7 @@ If the user needs something no agent does, add a `### Suggested new agent` secti
 | Something the user owes someone else | Create or update `{{commitments}}/<slug>.md` |
 | Information about a person | Append to `{{people}}/<name>.md` (create if missing) |
 | Looks like a to-do | Do **not** create it anywhere. Collect it under "Task candidates" in your report |
-| Work-system content the profile says to keep out | Leave it unfiled and list it in your report |
+| Content that a Boundaries rule in the profile excludes (only if rules exist) | Leave it unfiled and list it in your report |
 
 3. Link with `[[wikilinks]]` between the daily entry, the thread, the person, and the commitment. Link to existing notes; do not create a note just to have a link target.
 4. After a capture is fully filed, set `status: filed`, add `filed: "{{ISO timestamp}}"`, and move it to `{{archive}}/captures/`.
