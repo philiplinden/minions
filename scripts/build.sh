@@ -28,12 +28,7 @@ if [[ ! -d "$REPO_ROOT/adapters/$PLATFORM" ]]; then
 fi
 
 # ── Check dependencies ─────────────────────────────────────────────────────
-case "$PLATFORM" in
-  codex-cli) ;;
-  *)
-    command -v jq >/dev/null 2>&1 || die "jq is required for the build (install via brew, apt, etc.)"
-    ;;
-esac
+command -v jq >/dev/null 2>&1 || die "jq is required for the build (install via brew, apt, etc.)"
 
 # ── Source adapters ────────────────────────────────────────────────────────
 # shellcheck source=adapters/lib.sh
